@@ -12,8 +12,8 @@ var server;
 if(environment == "production") 
 {
   server = restify.createServer({
-    certificate: fs.readFileSync("path/to/server/certificate"),
-    key: fs.readFileSync("path/to/server/key"),
+    certificate: fs.readFileSync("/etc/letsencrypt/live/anotherone.ca/cert.pem"),
+    key: fs.readFileSync("/etc/letsencrypt/live/anotherone.ca/privkey.pem"),
     name: "Botanist",
   });
 
