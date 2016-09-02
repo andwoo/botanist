@@ -12,7 +12,7 @@ var server;
 if(environment == "production") 
 {
   server = restify.createServer({
-    certificate: fs.readFileSync("/etc/letsencrypt/live/anotherone.ca/cert.pem"),
+    certificate: fs.readFileSync("/etc/letsencrypt/live/anotherone.ca/fullchain.pem"),
     key: fs.readFileSync("/etc/letsencrypt/live/anotherone.ca/privkey.pem"),
     name: "Botanist",
   });
@@ -36,9 +36,16 @@ server.get(/.*/, restify.serveStatic({
   "default": "index.html"
  }));
 
+/*
+Before submitting a command to your server, Slack will occasionally send your command URLs a simple GET request to verify the certificate. These requests will include a parameter ssl_check set to 1. Mostly, you may ignore these requests, but please do respond with a HTTP 200 OK.
+*/
+server.get("/command/:name", function(request, response, next){
+  response.send(200, "yup!");
+  return next();
+});
+
 server.post("/command/:name", function(request, response, next){
-  //req.params
-  res.json(200, {
+  response.json(200, {
     text: "JSON data: " + JSON.stringify(request.params)
   });
   return next();
