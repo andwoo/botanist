@@ -35,3 +35,11 @@ server.get(/.*/, restify.serveStatic({
   "directory": path.join(__dirname, "../public"),
   "default": "index.html"
  }));
+
+server.post("/command/:name", function(request, response, next){
+  //req.params
+  res.json(200, {
+    text: "JSON data: " + JSON.stringify(request.params)
+  });
+  return next();
+});
