@@ -12,6 +12,7 @@ var server;
 if(environment == "production") 
 {
   server = restify.createServer({
+    //TODO put cert paths in config file
     certificate: fs.readFileSync("/etc/letsencrypt/live/anotherone.ca/fullchain.pem"),
     key: fs.readFileSync("/etc/letsencrypt/live/anotherone.ca/privkey.pem"),
     name: "Botanist",
@@ -30,6 +31,12 @@ else
 
 logger.LogInfo(`Server name: ${server.name} Server url: ${server.url}`);
 
+//body parser to parse POST requests
+server.use(restify.bodyParser({
+  mapParams: true,
+  overrideParams: false
+}));
+
 //serving static files
 server.get(/.*/, restify.serveStatic({
   "directory": path.join(__dirname, "../public"),
@@ -45,8 +52,12 @@ server.get("/command/:name", function(request, response, next){
 });
 
 server.post("/command/:name", function(request, response, next){
-  response.json(200, {
-    text: "JSON data: " + JSON.stringify(request.params)
-  });
+  //TODO put token in config file
+  if(request.params.token == "XaedsDeKAEwoZpnZegToSIf9") {
+    response.json(200, {
+      response_type: "in_channel",
+      text: "Slack's POST data: " + JSON.stringify(request.params)
+    });
+  }
   return next();
 });
