@@ -1,0 +1,5 @@
+{
+  "certificatePath": "/etc/letsencrypt/live/anotherone.ca/fullchain.pem",
+  "keyPath": "/etc/letsencrypt/live/anotherone.ca/privkey.pem",
+  "slackToken": "XaedsDeKAEwoZpnZegToSIf9"
+}

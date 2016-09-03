@@ -1,10 +1,12 @@
 const path = require("path");
 const fs = require("fs");
-const logger = require("./logger/Logger");
 const restify = require("restify");
+const logger = require("./logger/Logger");
+const config = require("./configuration/Configuration");
 const environment = process.env.NODE_ENV || "development";
 
 logger.Initialize(path.join(__dirname, "../logs"));
+config.Initialize(path.join(__dirname, "./config.json"));
 logger.LogInfo(`Server is running in '${environment}' environment`)
 
 var server;
@@ -13,8 +15,8 @@ if(environment == "production")
 {
   server = restify.createServer({
     //TODO put cert paths in config file
-    certificate: fs.readFileSync("/etc/letsencrypt/live/anotherone.ca/fullchain.pem"),
-    key: fs.readFileSync("/etc/letsencrypt/live/anotherone.ca/privkey.pem"),
+    certificate: fs.readFileSync(config.data.certificatePath),
+    key: fs.readFileSync(config.data.keyPath),
     name: "Botanist",
   });
 
@@ -26,7 +28,7 @@ else
     name: "Botanist"
   });
 
-  server.listen(80);
+  server.listen(8080);
 }
 
 logger.LogInfo(`Server name: ${server.name} Server url: ${server.url}`);
@@ -51,13 +53,6 @@ server.get("/command/:name", function(request, response, next){
   return next();
 });
 
-server.post("/command/:name", function(request, response, next){
-  //TODO put token in config file
-  if(request.params.token == "XaedsDeKAEwoZpnZegToSIf9") {
-    response.json(200, {
-      response_type: "in_channel",
-      text: "Slack's POST data: " + JSON.stringify(request.params)
-    });
-  }
-  return next();
-});
+//commands
+const UrbanDictionaryCommand = require("./commands/UrbanDictionaryCommand");
+server.post(UrbanDictionaryCommand.CommandName, UrbanDictionaryCommand.HandleRequest)
