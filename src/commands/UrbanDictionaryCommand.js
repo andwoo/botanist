@@ -38,7 +38,7 @@ function FormatSlackAttachmentMessage(sendToChannel, jsonData) {
     response_type: sendToChannel ? "in_channel" : "ephemeral",
     text: undefined,
     attachments: [{
-      title: jsonData.title,
+      title: jsonData.word,
       title_link: jsonData.permalink,
       text: jsonData.definition
     },
