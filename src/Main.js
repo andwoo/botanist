@@ -5,8 +5,8 @@ const logger = require("./logger/Logger");
 const config = require("./configuration/Configuration");
 const environment = process.env.NODE_ENV || "development";
 
-logger.Initialize(path.join(__dirname, "../logs"));
 config.Initialize(path.join(__dirname, "./config.json"));
+logger.Initialize(path.join(__dirname, "../logs"), config.data.enableDebugLogs);
 logger.LogInfo(`Server is running in '${environment}' environment`)
 
 var server;

@@ -5,14 +5,12 @@ const winstonRotateFile = require("winston-daily-rotate-file");
 
 module.exports = class Logger {
 
-  static Initialize(logFilePath) {
-    let environment = process.env.NODE_ENV || "development";
-
+  static Initialize(logFilePath, enableDebugLogs) {
     if(!fs.existsSync(logFilePath)) {
       fs.mkdirSync(logFilePath);
     }
 
-    if(environment == "development") {
+    if(enableDebugLogs) {
       Winston.add(winstonRotateFile, {
         filename: path.join(logFilePath, "_info.log"),
         datePattern: "yyyy-MM-dd",

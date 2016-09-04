@@ -1,12 +1,14 @@
 const urban = require("urban");
 const config = require("../configuration/Configuration");
+const logger = require("../logger/Logger");
 
 module.exports.CommandName = "urban";
 
 module.exports.HandleRequest = function(request, response, next){
-  //TODO put token in config file
+  logger.LogInfoData("Received post for command 'urban'", request.params);
   if(request.params.token == config.data.slackToken) {
     if(request.params.text && request.params.text.length > 0) {
+      logger.LogInfo(`Looking up definition ${request.params.text}`);
       urban(request.params.text).first(function(json) {
         response.json(200, {
           response_type: "in_channel",
@@ -23,6 +25,7 @@ module.exports.HandleRequest = function(request, response, next){
       });
     }
     else {
+      logger.LogInfo("Looking up random definition");
       urban.random().first(function(json) {
         response.json(200, {
           response_type: "in_channel",
