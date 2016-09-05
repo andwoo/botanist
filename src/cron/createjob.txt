@@ -1,0 +1,2 @@
+crontab -e
+0 0 1 * * /home/botanist/src/cron/renew.sh
