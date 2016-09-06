@@ -28,7 +28,7 @@ else
     name: "Botanist"
   });
 
-  server.listen(8080);
+  server.listen(80);
 }
 
 logger.LogInfo(`Server name: ${server.name} Server url: ${server.url}`);
