@@ -4,7 +4,8 @@ const jsonmake = require("jsonmake");
 var configObject = {
   certificatePath: "",
   keyPath: "",
-  slackToken: "",
+  urbanSlackToken: "",
+  xkcdSlackToken: "",
   enableDebugLogs: true
 }
 

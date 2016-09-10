@@ -6,7 +6,7 @@ module.exports.CommandName = "urban";
 
 module.exports.HandleRequest = function(request, response, next){
   logger.LogInfoData("Received post for command 'urban'", request.params);
-  if(request.params.token == config.data.slackToken) {
+  if(request.params.token == config.data.urbanSlackToken) {
     if(request.params.text && request.params.text.length > 0) {
       logger.LogInfo(`Looking up definition ${request.params.text}`);
       urban(request.params.text).first(function(json) {

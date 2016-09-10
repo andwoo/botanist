@@ -55,4 +55,7 @@ server.get("/command/:name", function(request, response, next){
 
 //commands
 const UrbanDictionaryCommand = require("./commands/UrbanDictionaryCommand");
+const XKCDCommand = require("./commands/XKCDCommand");
+
 server.post(`/command/${UrbanDictionaryCommand.CommandName}`, UrbanDictionaryCommand.HandleRequest);
+server.post(`/command/${XKCDCommand.CommandName}`, XKCDCommand.HandleRequest);
