@@ -46,7 +46,7 @@ function GetXKCDRss(callback) {
             let latestComic = parsed.rss.channel[0].item[0];
             callback(undefined, {
               title: latestComic.title[0],
-              hoverTitle: hoverRegex.exec(latestComic.description[0])[1],
+              hoverTitle: `Hover text: ${hoverRegex.exec(latestComic.description[0])[1]}`,
               link: latestComic.link[0],
               image: imageRegex.exec(latestComic.description[0])[1]
             });
@@ -71,7 +71,7 @@ function FormatSlackAttachmentMessage(sendToChannel, jsonData) {
     attachments: [{
       title: jsonData.title,
       title_link: jsonData.link,
-      text: jsonData.image
+      image_url: jsonData.image
     },
     {
       text: jsonData.hoverTitle
