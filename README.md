@@ -5,6 +5,7 @@ Slack bot for goofs.
 | Command | Arguments | Description |
 |---|---|---|
 \urban | string | Searches the given string on urban dictionary and returns the definition. If no arguments are present, a random definition is returned.
+\xkcd | none | Retrieves the latest comic from http://xkcd.com/
 
 ## Getting Started
 1. Install [NodeJS](https://nodejs.org/en/) version 6.5.0 or higher. NodeJS comes with a bundled package manager called npm (Node Package Manager).
