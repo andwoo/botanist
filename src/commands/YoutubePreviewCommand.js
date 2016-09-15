@@ -7,7 +7,7 @@ youtube.setKey(config.data.youtubeAPIKey);
 module.exports.CommandName = "yt";
 
 module.exports.HandleRequest = function(request, response, next){
-  logger.LogInfoData("Received post for command 'urban'", request.params);
+  logger.LogInfoData("Received post for command 'yt'", request.params);
   if(request.params.token == config.data.youtubeToken) {
     let youtubeUrl = request.params.text;
     if(youtubeUrl && youtubeUrl.length > 0) {
@@ -41,7 +41,7 @@ function ExtractVideoIdFromUrl(url) {
 function FormatSlackAttachmentMessage(sendToChannel, youtubeUrl, jsonData) {
   return {
     response_type: sendToChannel ? "in_channel" : "ephemeral",
-    text: undefined,
+    text: youtubeUrl,
     attachments: [{
       title: jsonData.items[0].snippet.title,
       title_link: youtubeUrl,

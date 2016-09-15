@@ -10,7 +10,7 @@ var hoverRegex = /title="(.*?)"/i;
 module.exports.CommandName = "xkcd";
 
 module.exports.HandleRequest = function(request, response, next){
-  logger.LogInfoData("Received post for command 'urban'", request.params);
+  logger.LogInfoData("Received post for command 'xkcd'", request.params);
   if(request.params.token == config.data.xkcdSlackToken) {
     GetXKCDRss(function(error, comic) {
       if(error) {
