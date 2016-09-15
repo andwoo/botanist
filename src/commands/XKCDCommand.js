@@ -26,7 +26,7 @@ module.exports.HandleRequest = function(request, response, next){
 
 function GetXKCDRss(callback) {
   //get the latest xkcd comic
-  http.get({
+  let request = http.get({
     host: "xkcd.com",
     path: "/rss.xml"
   }, function(response) {
@@ -62,6 +62,8 @@ function GetXKCDRss(callback) {
       callback(error, undefined);
     });
   });
+
+  request.end();
 }
 
 function FormatSlackAttachmentMessage(sendToChannel, jsonData) {
@@ -85,6 +87,17 @@ function FormatSlackMessage(sendToChannel, text) {
     text: text
   }
 }
+
+/*GetXKCDRss(function(error, comic) {
+  if(error) {
+    //response.json(200, FormatSlackMessage(false, error));
+    console.log("Error: " + error);
+  }
+  else {
+    //response.json(200, FormatSlackAttachmentMessage(true, comic));
+    console.log(FormatSlackAttachmentMessage(true, comic));
+  }
+});*/
 
 /*
 { title: 'Wrong',
