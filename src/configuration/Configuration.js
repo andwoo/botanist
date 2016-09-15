@@ -6,6 +6,8 @@ var configObject = {
   keyPath: "",
   urbanSlackToken: "",
   xkcdSlackToken: "",
+  youtubeToken: "",
+  youtubeAPIKey: "",
   enableDebugLogs: true
 }
 

@@ -3,5 +3,7 @@
   "keyPath": "/etc/letsencrypt/live/anotherone.ca/privkey.pem",
   "urbanSlackToken": "XaedsDeKAEwoZpnZegToSIf9",
   "xkcdSlackToken": "ZOol9fnTC4ARmPJeNxroLpQx",
+  "youtubeToken": "ufpoMzIvZw9tBaFFQZr2fefg",
+  "youtubeAPIKey": "",
   "enableDebugLogs": true
 }

@@ -56,6 +56,8 @@ server.get("/command/:name", function(request, response, next){
 //commands
 const UrbanDictionaryCommand = require("./commands/UrbanDictionaryCommand");
 const XKCDCommand = require("./commands/XKCDCommand");
+const YoutubePreviewCommand = require("./commands/YoutubePreviewCommand.js");
 
 server.post(`/command/${UrbanDictionaryCommand.CommandName}`, UrbanDictionaryCommand.HandleRequest);
 server.post(`/command/${XKCDCommand.CommandName}`, XKCDCommand.HandleRequest);
+server.post(`/command/${YoutubePreviewCommand.CommandName}`, YoutubePreviewCommand.HandleRequest);
