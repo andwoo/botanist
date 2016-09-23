@@ -24,9 +24,9 @@ module.exports.HandleRequest = function(request, response, next){
                 search, 
                 jsonData.items[0].snippet.title,
                 jsonData.items[0].snippet.thumbnails.default.url,
-                jsonData.items[0].snippet.description));
-            }*/
-              response.json(200, FormatSlackMessage(true, jsonData.items[0].snippet.description));
+                jsonData.items[0].snippet.description));*/
+                response.json(200, FormatSlackMessage(true, jsonData.items[0].snippet.description));
+            }
           });
         }
         else {
