@@ -19,13 +19,14 @@ module.exports.HandleRequest = function(request, response, next){
               response.json(200, FormatSlackMessage(false, error));
             }
             else {
-              response.json(200, FormatSlackAttachmentMessage(
+              /*response.json(200, FormatSlackAttachmentMessage(
                 true, 
                 search, 
                 jsonData.items[0].snippet.title,
                 jsonData.items[0].snippet.thumbnails.default.url,
                 jsonData.items[0].snippet.description));
-            }
+            }*/
+              response.json(200, FormatSlackMessage(true, jsonData.items[0].snippet.description));
           });
         }
         else {
@@ -88,7 +89,7 @@ function SearchAndGetRandomVideo(searchTerm, callback) {
 function FormatSlackAttachmentMessage(sendToChannel, youtubeUrl, title, thumbnail, description) {
   return {
     response_type: sendToChannel ? "in_channel" : "ephemeral",
-    text: description/*,
+    text: description,
     attachments: [{
       title: title,
       title_link: youtubeUrl,
@@ -96,7 +97,7 @@ function FormatSlackAttachmentMessage(sendToChannel, youtubeUrl, title, thumbnai
     },
     {
       text: description
-    }]*/
+    }]
   }
 }
 
