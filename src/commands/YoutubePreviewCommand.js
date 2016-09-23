@@ -89,7 +89,7 @@ function SearchAndGetRandomVideo(searchTerm, callback) {
 function FormatSlackAttachmentMessage(sendToChannel, youtubeUrl, title, thumbnail, description) {
   return {
     response_type: sendToChannel ? "in_channel" : "ephemeral",
-    text: description,
+    text: undefined,
     attachments: [{
       title: title,
       title_link: youtubeUrl,
