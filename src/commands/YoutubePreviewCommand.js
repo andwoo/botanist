@@ -2,7 +2,7 @@ const config = require("../configuration/Configuration");
 const logger = require("../logger/Logger");
 const youtube = new (require("youtube-node"))();
 
-youtube.setKey(/*config.data.youtubeAPIKey*/"AIzaSyB9c6yFOjapnkSXtBkXNL6SxiB8SSkcheQ");
+youtube.setKey(config.data.youtubeAPIKey);
 
 module.exports.CommandName = "yt";
 
